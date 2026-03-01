@@ -32,14 +32,36 @@ const userLogin = catchAsync(async (req: Request, res: Response) => {
     maxAge: 1000 * 60 * 60 * 24 * 90 // 90 days
   })
 
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: "User logged in successfully",
     data: result,
   })
 })
 
+
+const userLogOut = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+
+  res.clearCookie('accessToken', {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax"
+  })
+
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax"
+  })
+  res.status(200).json({
+    success: true,
+    message: "User logged out successfully",
+    data: null,
+  })
+})
+
 export const UserControllers = {
   createUser,
-  userLogin
+  userLogin,
+  userLogOut
 }

@@ -10,7 +10,7 @@ const createUser = async (payload: Partial<IUserCreateInput>) => {
     const isUserExist = await User.findOne({ email })
 
     if (isUserExist) {
-        throw new Error("User Already Exist with this email")
+        throw new AppError(400, "User Already Exist with this email")
     }
 
     const hashPassword = await bcrypt.hash(password as string, 10)
@@ -28,12 +28,12 @@ const createUser = async (payload: Partial<IUserCreateInput>) => {
 const userLogin = async (payload: { email: string, password: string }) => {
     const user = await User.findOne({ email: payload.email })
     if (!user) {
-        throw new AppError(200, "User not found!");
+        throw new AppError(404, "User not found!");
     }
 
     const isCorrectPassword = await bcrypt.compare(payload.password, user.password);
     if (!isCorrectPassword) {
-        throw new AppError(200, "Password is incorrect!")
+        throw new AppError(400, "Password is incorrect!")
     }
 
     const accessToken = jwtHelper.generateToken({ email: user.email, role: user.role }, process.env.JWT_SECRET as Secret, "7d");
