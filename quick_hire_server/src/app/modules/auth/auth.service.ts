@@ -1,6 +1,9 @@
 import { User } from "./auth.model";
 import { IUserCreateInput } from "./auth.interface";
 import bcrypt from "bcrypt";
+import AppError from "../../helper/AppError";
+import { jwtHelper } from "../../helper/jwtHelper";
+import { Secret } from "jsonwebtoken";
 
 const createUser = async (payload: Partial<IUserCreateInput>) => {
     const { fullName, email, password, ...rest } = payload;
@@ -22,6 +25,30 @@ const createUser = async (payload: Partial<IUserCreateInput>) => {
 }
 
 
+const userLogin = async (payload: { email: string, password: string }) => {
+    const user = await User.findOne({ email: payload.email })
+    if (!user) {
+        throw new AppError(200, "User not found!");
+    }
+
+    const isCorrectPassword = await bcrypt.compare(payload.password, user.password);
+    if (!isCorrectPassword) {
+        throw new AppError(200, "Password is incorrect!")
+    }
+
+    const accessToken = jwtHelper.generateToken({ email: user.email, role: user.role }, process.env.JWT_SECRET as Secret, "7d");
+
+    const refreshToken = jwtHelper.generateToken({ email: user.email, role: user.role }, process.env.REFRESH_SECRET as Secret, "90d");
+
+    return {
+        user,
+        accessToken,
+        refreshToken
+    }
+}
+
+
 export const UserServices = {
-    createUser
+    createUser,
+    userLogin
 }
