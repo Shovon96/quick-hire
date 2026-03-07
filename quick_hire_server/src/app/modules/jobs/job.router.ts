@@ -15,4 +15,6 @@ router.post(
   JobsControllers.createJob
 );
 
+router.delete("/:id", JobsControllers.deleteJob);
+
 export const jobRoute = router;

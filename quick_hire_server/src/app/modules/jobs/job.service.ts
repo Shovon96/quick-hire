@@ -52,9 +52,18 @@ const createJob = async (payload: IJobCreateInput): Promise<IJobCreateInput> => 
   return populatedResult;
 };
 
+const deleteJob = async (id: string) => {
+  const result = await Job.findByIdAndUpdate(
+    id,
+    { status: "INACTIVE" },
+    { new: true }
+  );
+  return result;
+};
 
 export const JobsServices = {
   getAllJobs,
   getJobById,
   createJob,
+  deleteJob
 };

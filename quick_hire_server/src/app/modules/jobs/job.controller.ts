@@ -42,39 +42,22 @@ const createJob = catchAsync(async (req: Request, res: Response, next: NextFunct
 
 })
 
-// export const createJob = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   try {
-//     const jobData: IJobCreateInput = {
-//       title: req.body.title,
-//       description: req.body.description,
-//       company: req.body.company,
-//       location: req.body.location,
-//       salary: req.body.salary,
-//       jobType: req.body.jobType,
-//       experience: req.body.experience,
-//       skills: req.body.skills,
-//       postedBy: req.body.postedBy,
-//       status: req.body.status,
-//     };
+const deleteJob = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
 
-//     const result = await createJobService(jobData);
+  const { id } = req.params;
+  const result = await JobsServices.deleteJob(id as string);
 
-//     res.status(201).json({
-//       success: true,
-//       message: "Job created successfully",
-//       data: result,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+  res.status(200).json({
+    success: true,
+    message: "Job deleted successfully",
+    data: result,
+  })
+
+})
 
 export const JobsControllers = {
   getAllJobs,
   getJobById,
   createJob,
+  deleteJob
 };
