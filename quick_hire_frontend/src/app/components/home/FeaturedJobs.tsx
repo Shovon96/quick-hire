@@ -8,7 +8,7 @@ export default function FeaturedJobs() {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-12">
                     <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[48px] font-bold text-[#25324B]">
-                        Featured <span className="text-[#4640DE]">jobs</span>
+                        Featured <span className="text-[#26A4FF]">jobs</span>
                     </h2>
 
                     <button className="font-epilogue text-[#4640DE] font-semibold text-[16px] flex items-center gap-2 hover:gap-3 transition-all">

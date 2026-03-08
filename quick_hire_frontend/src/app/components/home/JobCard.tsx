@@ -22,9 +22,9 @@ export default function JobCard({ job }: Props) {
                     <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
                         <Image src={job.logo} alt={job.company} width={48} height={48} className="object-cover" />
                     </div>
-                    <button className="text-xs border border-[#4640DE] text-[#4640DE] px-4 py-2 font-epilogue font-semibold cursor-pointer">
+                    <span className="text-xs border border-[#4640DE] text-[#4640DE] px-4 py-2 font-epilogue font-semibold">
                         {job.type}
-                    </button>
+                    </span>
                 </div>
 
                 {/* Job Title */}
