@@ -7,7 +7,7 @@ const UserLayout = async ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="min-h-screen">
                 {children}
             </div>
