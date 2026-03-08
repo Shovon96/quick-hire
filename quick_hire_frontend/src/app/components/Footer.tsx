@@ -3,12 +3,12 @@
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-[1440px] mx-auto px-[124px] py-16">
+      <div className="max-w-360 mx-auto px-31 py-16">
         <div className="grid grid-cols-4 gap-12 mb-12">
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-linear-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">Q</span>
               </div>
               <span className="text-lg font-bold text-white">QuickHire</span>
