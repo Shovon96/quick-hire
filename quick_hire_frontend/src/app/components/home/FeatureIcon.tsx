@@ -7,7 +7,7 @@ import vodafoneLogo from "../../../../public/assets/vodafone.png"
 
 export default function FeatureIcon() {
     return (
-        <section className="w-full bg-white py-8 md:py-12">
+        <section className="w-full bg-white py-10 md:py-16 lg:py-20">
 
             <div className="max-w-360 mx-auto px-6 md:px-12 lg:px-31">
 
@@ -24,7 +24,7 @@ export default function FeatureIcon() {
                         height={40}
                         src={vodafoneLogo}
                         alt="Vodafone"
-                        className="opacity-100 transition max-w-full"
+                        className="opacity-100 transition max-w-full justify-self-start"
                     />
 
                     <Image
@@ -40,7 +40,7 @@ export default function FeatureIcon() {
                         height={24}
                         src={teslaLogo}
                         alt="Tesla"
-                        className="opacity-100 transition max-w-full"
+                        className="opacity-100 transition max-w-full justify-self-start"
                     />
 
                     <Image
