@@ -2,20 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
 import { Job } from '../../../components/home/Jobs';
-import ApplyJobForm from '@/src/app/components/jobDetails/ApplyJobForm';
+import JobHeader from '../../../components/jobDetails/JobHeader';
+import JobOverview from '../../../components/jobDetails/JobOverview';
+import JobDescription from '../../../components/jobDetails/JobDescription';
+import JobDetails from '../../../components/jobDetails/JobDetails';
+import CompanyCard from '../../../components/jobDetails/CompanyCard';
+import ApplyJobForm from '../../../components/jobDetails/ApplyJobForm';
 
 const API_URL = "http://localhost:5000/api/jobs";
-
-const tagColors: Record<string, string> = {
-    Marketing: "bg-[#FFA500]/10 text-[#FFA500]",
-    Design: "bg-[#00D084]/10 text-[#00D084]",
-    Business: "bg-[#7C3AED]/10 text-[#7C3AED]",
-    Technology: "bg-[#EF4444]/10 text-[#EF4444]",
-};
 
 export default function JobDetailsPage() {
     const params = useParams();
@@ -77,6 +74,11 @@ export default function JobDetailsPage() {
         fetchJob();
     }, [jobId]);
 
+    const handleApplyClick = () => {
+        const element = document.getElementById("applicationForm");
+        element?.scrollIntoView({ behavior: "smooth" });
+    };
+
     if (loading) {
         return (
             <div>
@@ -126,189 +128,22 @@ export default function JobDetailsPage() {
                     <div className="grid grid-cols-3 gap-8">
                         {/* Left Column - Job Details */}
                         <div className="col-span-2">
-                            {/* Header Section */}
-                            <div className="border border-[#E8E8F0] rounded-lg p-8 mb-8 bg-white">
-                                <div className="flex items-start justify-between mb-6">
-                                    <div className="flex items-start gap-6">
-                                        {/* Company Logo */}
-                                        <div className="w-20 h-20 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden shrink-0">
-                                            <Image
-                                                src={job.company.logo}
-                                                alt={job.company.name}
-                                                width={80}
-                                                height={80}
-                                                className="object-cover"
-                                            />
-                                        </div>
-
-                                        {/* Job Title and Company */}
-                                        <div>
-                                            <h1 style={{ fontFamily: 'var(--font-clash)' }} className="text-[36px] font-bold text-[#25324B] mb-2">
-                                                {job.title}
-                                            </h1>
-                                            <p className="font-epilogue text-[#7C8493] text-[16px] mb-4">
-                                                {job.company.name}
-                                            </p>
-
-                                            {/* Tags */}
-                                            <div className="flex gap-2 flex-wrap">
-                                                <span className="text-xs px-3 py-1.5 rounded-full font-epilogue font-medium bg-blue-50 text-blue-600">
-                                                    {job.employmentType.replace('_', ' ')}
-                                                </span>
-                                                <span className="text-xs px-3 py-1.5 rounded-full font-epilogue font-medium bg-green-50 text-green-600">
-                                                    {job.jobType}
-                                                </span>
-                                                {job.jobCategory.map((tag: string) => (
-                                                    <span
-                                                        key={tag}
-                                                        className={`text-xs px-3 py-1.5 rounded-full font-epilogue font-medium ${tagColors[tag] || "bg-gray-100 text-gray-600"}`}
-                                                    >
-                                                        {tag}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Apply Button */}
-                                    <button className="bg-[#4640DE] text-white font-epilogue font-semibold text-[16px] px-8 py-3 rounded-lg hover:bg-[#3a34b8] transition-colors">
-                                        Apply Now
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Job Overview */}
-                            <div className="grid grid-cols-4 gap-4 mb-8">
-                                <div className="border border-[#E8E8F0] rounded-lg p-6 bg-white">
-                                    <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Salary</p>
-                                    <p style={{ fontFamily: 'var(--font-clash)' }} className="font-bold text-[20px] text-[#25324B]">
-                                        {job.salary}
-                                    </p>
-                                </div>
-
-                                <div className="border border-[#E8E8F0] rounded-lg p-6 bg-white">
-                                    <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Job Type</p>
-                                    <p style={{ fontFamily: 'var(--font-clash)' }} className="font-bold text-[20px] text-[#25324B]">
-                                        {job.jobType}
-                                    </p>
-                                </div>
-
-                                <div className="border border-[#E8E8F0] rounded-lg p-6 bg-white">
-                                    <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Experience</p>
-                                    <p style={{ fontFamily: 'var(--font-clash)' }} className="font-bold text-[20px] text-[#25324B]">
-                                        {job.experience}
-                                    </p>
-                                </div>
-
-                                <div className="border border-[#E8E8F0] rounded-lg p-6 bg-white">
-                                    <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Vacancy</p>
-                                    <p style={{ fontFamily: 'var(--font-clash)' }} className="font-bold text-[20px] text-[#25324B]">
-                                        {job.vacancy}
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Job Description */}
-                            <div className="border border-[#E8E8F0] rounded-lg p-8 mb-8 bg-white">
-                                <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[24px] font-bold text-[#25324B] mb-4">
-                                    About this job
-                                </h2>
-                                <p className="font-epilogue text-[#7C8493] text-[16px] leading-relaxed whitespace-pre-wrap">
-                                    {job.description}
-                                </p>
-                            </div>
-
-                            {/* Job Details */}
-                            <div className="border border-[#E8E8F0] rounded-lg p-8 bg-white">
-                                <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[24px] font-bold text-[#25324B] mb-6">
-                                    Job Details
-                                </h2>
-
-                                <div className="grid grid-cols-2 gap-8">
-                                    <div>
-                                        <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Location</p>
-                                        <p className="font-epilogue text-[#25324B] text-[16px] font-semibold">
-                                            {job.jobLocation}
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Employment Type</p>
-                                        <p className="font-epilogue text-[#25324B] text-[16px] font-semibold">
-                                            {job.employmentType.replace('_', ' ')}
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Application Deadline</p>
-                                        <p className="font-epilogue text-[#25324B] text-[16px] font-semibold">
-                                            {job.applicationDeadline ? new Date(job.applicationDeadline).toLocaleDateString() : 'Not specified'}
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-epilogue text-[#7C8493] text-[14px] mb-2">Job Status</p>
-                                        <p className="font-epilogue text-[#25324B] text-[16px] font-semibold">
-                                            {job.status}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <JobHeader job={job} onApplyClick={handleApplyClick} />
+                            <JobOverview job={job} />
+                            <JobDescription job={job} />
+                            <JobDetails job={job} />
                         </div>
 
-                        {/* Right Column - Company Info & Apply Form */}
-                        <div className="col-span-1 space-y-8">
-                            {/* Company Card */}
-                            <div className="border border-[#E8E8F0] rounded-lg p-8 bg-white">
-                                <h3 style={{ fontFamily: 'var(--font-clash)' }} className="text-[20px] font-bold text-[#25324B] mb-6">
-                                    About Company
-                                </h3>
-
-                                {/* Company Logo */}
-                                <div className="w-full h-24 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden mb-6">
-                                    <Image
-                                        src={job.company.logo}
-                                        alt={job.company.name}
-                                        width={96}
-                                        height={96}
-                                        className="object-cover"
-                                    />
-                                </div>
-
-                                {/* Company Name */}
-                                <h4 style={{ fontFamily: 'var(--font-clash)' }} className="text-[18px] font-bold text-[#25324B] mb-4">
-                                    {job.company.name}
-                                </h4>
-
-                                {/* Company Details */}
-                                <div className="space-y-4 mb-6">
-                                    <div>
-                                        <p className="font-epilogue text-[#7C8493] text-[12px] mb-1">Location</p>
-                                        <p className="font-epilogue text-[#25324B] text-[14px] font-semibold">
-                                            {job.company.location}
-                                        </p>
-                                    </div>
-
-                                    {job.company.website && (
-                                        <div>
-                                            <p className="font-epilogue text-[#7C8493] text-[12px] mb-1">Website</p>
-                                            <a
-                                                href={job.company.website}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="font-epilogue text-[#4640DE] text-[14px] font-semibold hover:underline"
-                                            >
-                                                Visit Website
-                                            </a>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-
+                        {/* Right Column - Company Info */}
+                        <div className="col-span-1">
+                            <CompanyCard job={job} />
                         </div>
                     </div>
+
                     {/* Apply Form */}
-                    <ApplyJobForm jobId={job.id} />
+                    <div id="applicationForm" className="mt-12">
+                        <ApplyJobForm jobId={job.id} />
+                    </div>
                 </div>
             </div>
         </div>

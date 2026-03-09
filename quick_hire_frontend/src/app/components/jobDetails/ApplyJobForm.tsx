@@ -115,8 +115,8 @@ export default function ApplyJobForm({ jobId }: ApplyJobFormProps) {
   };
 
   return (
-    <div className="border border-[#E8E8F0] rounded-lg p-8 bg-white my-8 max-w-3xl mx-auto">
-      <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[24px] font-bold text-[#25324B] mb-6">
+    <div id="applicationForm" className="border border-[#E8E8F0] rounded-lg p-8 bg-white my-8 max-w-3xl mx-auto">
+      <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[28px] font-semibold text-center text-[#4640DE] mb-6">
         Apply for this job
       </h2>
 
@@ -210,7 +210,7 @@ export default function ApplyJobForm({ jobId }: ApplyJobFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#4640DE] text-white font-epilogue font-semibold text-[16px] px-6 py-3 rounded-lg hover:bg-[#3a34b8] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-[#4640DE] text-white cursor-pointer font-epilogue font-semibold text-[16px] px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Submitting...' : 'Submit Application'}
         </button>
