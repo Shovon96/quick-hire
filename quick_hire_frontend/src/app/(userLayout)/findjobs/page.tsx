@@ -40,7 +40,6 @@ export default function FindJobsPage() {
                 }
 
                 const data = await response.json();
-                console.log("API Response:", data);
 
                 // Map API response to Job type - using correct structure
                 const mappedJobs: Job[] = data.data.map((job: any) => ({
