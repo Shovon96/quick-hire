@@ -16,12 +16,10 @@ export default function FilterSection({
   onExperienceChange,
 }: FilterSectionProps) {
   const categories = ['All', 'Marketing', 'Design', 'Business', 'Technology'];
-  const employmentTypes = ['All', 'Internship', 'Full Time', 'Part Time', 'Contract'];
-  const experiences = ['All', 'Entry Level', 'Junior', 'Mid Level', 'Senior'];
-  const jobTypes = ['All', 'Onsite', 'Remote', 'Hybrid'];
+  const employmentTypes = ['All', 'INTERNSHIP', 'FULL_TIME', 'PART_TIME', 'CONTRACT'];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
       {/* Category Filter */}
       <div>
         <label className="font-epilogue text-[#25324B] font-semibold text-[14px] block mb-3">
@@ -52,7 +50,7 @@ export default function FilterSection({
         >
           {employmentTypes.map((type) => (
             <option key={type} value={type === 'All' ? '' : type}>
-              {type}
+              {type === 'All' ? 'All' : type.replace('_', ' ')}
             </option>
           ))}
         </select>
@@ -68,29 +66,11 @@ export default function FilterSection({
           onChange={(e) => onExperienceChange(e.target.value)}
           className="w-full border border-[#E8E8F0] rounded-lg px-4 py-3 text-[#25324B] font-epilogue text-[14px] outline-none focus:border-[#4640DE] transition"
         >
-          {experiences.map((exp) => (
-            <option key={exp} value={exp === 'All' ? '' : exp}>
-              {exp}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Job Type Filter */}
-      <div>
-        <label className="font-epilogue text-[#25324B] font-semibold text-[14px] block mb-3">
-          Job Type
-        </label>
-        <select
-          value={selectedType}
-          onChange={(e) => onTypeChange(e.target.value)}
-          className="w-full border border-[#E8E8F0] rounded-lg px-4 py-3 text-[#25324B] font-epilogue text-[14px] outline-none focus:border-[#4640DE] transition"
-        >
-          {jobTypes.map((type) => (
-            <option key={type} value={type === 'All' ? '' : type}>
-              {type}
-            </option>
-          ))}
+          <option value="">All</option>
+          <option value="Entry Level">Entry Level</option>
+          <option value="Junior">Junior</option>
+          <option value="Mid Level">Mid Level</option>
+          <option value="Senior">Senior</option>
         </select>
       </div>
     </div>

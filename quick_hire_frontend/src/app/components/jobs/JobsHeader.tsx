@@ -5,7 +5,7 @@ export default function JobsHeader() {
         Find your<span className="text-[#26A4FF]"> dream job</span>
       </h1>
       <p className="font-epilogue text-[#7C8493] text-[18px]">
-        Search from 8 available jobs
+        Search from available jobs
       </p>
     </div>
   );
