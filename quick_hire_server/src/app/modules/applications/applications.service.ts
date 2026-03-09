@@ -6,7 +6,7 @@ const submitApplication = async (
   payload: IApplicationCreateInput
 ): Promise<IApplicationCreateInput> => {
 
-  // Check if user already applied for this job
+  // Check if user already applied
   const existingApplication = await Application.findOne({
     jobId: payload.jobId,
     email: payload.email,
@@ -16,12 +16,14 @@ const submitApplication = async (
     throw new Error("You have already applied for this job");
   }
 
-  // admin is not allowed to apply for jobs
-  const isAdmin = await User.findById(payload.email).populate("role");
-  if (isAdmin.role === "ADMIN") {
-    throw new Error("Admin is not allowed to apply for jobs");
-  }
-  
+  // // find user by email
+  // const user = await User.findOne({ email: payload.email });
+
+  // // admin not allowed
+  // if (user.role === "ADMIN") {
+  //   throw new Error("Admin is not allowed to apply for jobs");
+  // }
+
   const applicationData = {
     jobId: payload.jobId,
     name: payload.name,
@@ -35,7 +37,7 @@ const submitApplication = async (
   const result = await Application.create(applicationData);
 
   const populatedResult = await Application.findById(result._id)
-    .populate("jobId", "title company location")
+    .populate("jobId", "title company location");
 
   return populatedResult;
 };

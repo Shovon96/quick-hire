@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
 import { Job } from '../../../components/home/Jobs';
+import ApplyJobForm from '@/src/app/components/jobDetails/ApplyJobForm';
 
 const API_URL = "http://localhost:5000/api/jobs";
 
@@ -34,12 +35,10 @@ export default function JobDetailsPage() {
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include'
                 });
-                console.log('response', response)
 
                 if (!response.ok) throw new Error('Failed to fetch job details');
 
                 const data = await response.json();
-                console.log('data', data)
                 const jobData = data.data;
 
                 const mappedJob: Job = {
@@ -257,10 +256,10 @@ export default function JobDetailsPage() {
                             </div>
                         </div>
 
-                        {/* Right Column - Company Info */}
-                        <div className="col-span-1">
+                        {/* Right Column - Company Info & Apply Form */}
+                        <div className="col-span-1 space-y-8">
                             {/* Company Card */}
-                            <div className="border border-[#E8E8F0] rounded-lg p-8 bg-white sticky top-24">
+                            <div className="border border-[#E8E8F0] rounded-lg p-8 bg-white">
                                 <h3 style={{ fontFamily: 'var(--font-clash)' }} className="text-[20px] font-bold text-[#25324B] mb-6">
                                     About Company
                                 </h3>
@@ -304,14 +303,12 @@ export default function JobDetailsPage() {
                                         </div>
                                     )}
                                 </div>
-
-                                {/* Apply Button */}
-                                <button className="w-full bg-[#4640DE] text-white font-epilogue font-semibold text-[16px] px-6 py-3 rounded-lg hover:bg-[#3a34b8] transition-colors">
-                                    Apply Now
-                                </button>
                             </div>
+
                         </div>
                     </div>
+                    {/* Apply Form */}
+                    <ApplyJobForm jobId={job.id} />
                 </div>
             </div>
         </div>
