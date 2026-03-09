@@ -30,18 +30,23 @@ const createJob = async (payload: IJobCreateInput): Promise<IJobCreateInput> => 
 
   const jobData = {
     title: payload.title,
-    companyLogo: payload.companyLogo,
     description: payload.description,
-    company: payload.company,
+    jobType: payload.jobType,
     jobLocation: payload.jobLocation,
-    salary: payload.salary,
-    jobType: payload.jobType || "FULL_TIME",
     experience: payload.experience,
-    skills: payload.skills,
+    salary: payload.salary,
+    employmentType: payload.employmentType,
     jobCategory: payload.jobCategory,
-    postedBy: payload.postedBy,
-    applicationEnd: payload.applicationEnd,
+    vacancy: payload.vacancy,
+    applicationDeadline: payload.applicationDeadline,
     status: payload.status || "ACTIVE",
+    company: {
+      name: payload.company.name,
+      logo: payload.company.logo,
+      location: payload.company.location,
+      website: payload.company.website
+    },
+    postedBy: payload.postedBy
   };
 
   const result = await Job.create(jobData);
@@ -55,7 +60,7 @@ const createJob = async (payload: IJobCreateInput): Promise<IJobCreateInput> => 
 const deleteJob = async (id: string) => {
   const result = await Job.findByIdAndUpdate(
     id,
-    { status: "INACTIVE" },
+    { status: "CLOSED" },
     { new: true }
   );
   return result;

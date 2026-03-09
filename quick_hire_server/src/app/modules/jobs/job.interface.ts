@@ -1,18 +1,24 @@
-export type IJobType = "FULL_TIME" | "PART_TIME" | "CONTRACT" | "INTERNSHIP";
+export type IEmploymentType = "FULL_TIME" | "PART_TIME" | "CONTRACT" | "INTERNSHIP";
+export type IJobType = "ONSITE" | "REMOTE" | "HYBRID";
 export type IJobStatus = "ACTIVE" | "CLOSED" | "DRAFT";
 
 export interface IJobCreateInput {
   title: string;
-  companyLogo?: string;
   description: string;
-  company: string;
-  jobLocation: string;
-  salary: string;
   jobType: IJobType;
+  jobLocation?: string;
   experience?: string;
-  skills: string[];
+  salary: string;
+  employmentType: IEmploymentType;
   jobCategory: string[];
-  postedBy?: string;
-  applicationEnd?: string;
+  vacancy?: string;
+  applicationDeadline?: string;
   status?: IJobStatus;
+  postedBy: string; // User ID
+  company: {
+    name: string;
+    logo?: string;
+    location?: string;
+    website?: string;
+  }
 }
