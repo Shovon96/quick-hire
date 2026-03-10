@@ -30,11 +30,11 @@ export default function Navbar() {
 
                 {/* Auth Buttons */}
                 <div className="flex items-center gap-4">
-                    <Link href="#" className="font-epilogue text-[#4640DE] font-bold text-[16px]">
+                    <Link href="/login" className="font-epilogue text-[#4640DE] font-bold text-[16px]">
                         Login
                     </Link>
-                    <Link href="#" className="font-epilogue bg-[#4640DE] text-white font-bold text-[16px] px-6 py-3">
-                        Sign Up
+                    <Link href="/admin/dashboard" className="font-epilogue bg-[#4640DE] text-white font-bold text-[16px] px-6 py-3">
+                        Dashboard
                     </Link>
                 </div>
             </div>
