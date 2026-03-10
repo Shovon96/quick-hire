@@ -1,6 +1,6 @@
 import { User } from "./auth.model";
 import { IUserCreateInput } from "./auth.interface";
-import bcrypt from "bcrypt";
+import bcrypt from 'bcryptjs';
 import AppError from "../../helper/AppError";
 import { jwtHelper } from "../../helper/jwtHelper";
 import { Secret } from "jsonwebtoken";
