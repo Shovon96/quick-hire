@@ -1,5 +1,8 @@
 'use client';
 
+import Image from "next/image";
+import logoIcon from "../../../public/assets/logoIcon.png";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -9,9 +12,9 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-linear-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">Q</span>
+                <Image src={logoIcon} alt="Logo" width={32} height={32} />
               </div>
-              <span className="text-lg font-bold text-white">QuickHire</span>
+              <span style={{ fontFamily: 'var(--font-clash)' }} className="text-[24px] font-semibold text-[#fafcff]">QuickHire</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
               Great platform for the job seeker that passionate about startups. Find your dream job easier.

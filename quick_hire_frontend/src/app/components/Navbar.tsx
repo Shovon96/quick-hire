@@ -3,7 +3,6 @@
 import Image from "next/image";
 import logoIcon from "../../../public/assets/logoIcon.png";
 import Link from "next/link";
-import { getUserInfo } from "@/src/utils/getUserToken";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
@@ -11,15 +10,22 @@ export default function Navbar() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const userData = await getUserInfo();
-            setUser(userData);
+            const response = await fetch("https://quick-hire-server-amber.vercel.app/api/auth/me", {
+                method: "GET",
+                credentials: "include", 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const user = await response.json();
+            setUser(user.data);
         };
 
         fetchUser();
     }, []);
-    const isAdmin = user?.role === "ADMIN";
 
-    console.log('isAdmin', isAdmin)
+    const isAdmin = user?.role === "ADMIN";
 
     return (
         <nav className="bg-transparent sticky top-0 left-0 right-0 z-99">
