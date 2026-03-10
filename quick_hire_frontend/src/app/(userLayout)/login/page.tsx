@@ -50,7 +50,7 @@ export default function LoginPage() {
 
             // Redirect based on role
             setTimeout(() => {
-                if (data.user?.role === 'ADMIN') {
+                if (data?.data?.user?.role === 'ADMIN') {
                     router.push('/admin/dashboard');
                 } else {
                     router.push('/');
@@ -68,11 +68,11 @@ export default function LoginPage() {
 
     const fillDemoCredentials = (role: 'user' | 'admin') => {
         if (role === 'user') {
-            setEmail('user@example.com');
+            setEmail('john@example.com');
             setPassword('password123');
         } else {
-            setEmail('admin@example.com');
-            setPassword('admin123');
+            setEmail('john@admin.com');
+            setPassword('password123');
         }
     };
 

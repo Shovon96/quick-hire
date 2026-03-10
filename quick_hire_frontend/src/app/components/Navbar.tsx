@@ -1,8 +1,24 @@
+"use client"
+
 import Image from "next/image";
 import logoIcon from "../../../public/assets/logoIcon.png";
 import Link from "next/link";
+import { getUserInfo } from "@/src/utils/getUserToken";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userData = await getUserInfo();
+            setUser(userData);
+        };
+
+        fetchUser();
+    }, []);
+    const isAdmin = user?.role === "ADMIN";
+
     return (
         <nav className="bg-transparent sticky top-0 left-0 right-0 z-99">
             <div className="max-w-360 mx-auto px-31 py-4 flex items-center justify-between">
@@ -33,8 +49,11 @@ export default function Navbar() {
                     <Link href="/login" className="font-epilogue text-[#4640DE] font-bold text-[16px]">
                         Login
                     </Link>
-                    <Link href="/admin/dashboard" className="font-epilogue bg-[#4640DE] text-white font-bold text-[16px] px-6 py-3">
-                        Dashboard
+                    <Link
+                        href={isAdmin ? "/admin/dashboard" : "/register"}
+                        className="font-epilogue bg-[#4640DE] text-white font-bold text-[16px] px-6 py-3"
+                    >
+                        {isAdmin ? "Dashboard" : "Sign Up"}
                     </Link>
                 </div>
             </div>
