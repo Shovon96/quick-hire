@@ -47,14 +47,14 @@ const userLogOut = catchAsync(async (req: Request, res: Response, next: NextFunc
 
   res.clearCookie('accessToken', {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax"
+    secure: true,
+    sameSite: "none"
   })
 
   res.clearCookie('refreshToken', {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax"
+    secure: true,
+    sameSite: "none"
   })
   res.status(200).json({
     success: true,

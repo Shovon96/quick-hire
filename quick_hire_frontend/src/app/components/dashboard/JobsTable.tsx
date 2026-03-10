@@ -62,6 +62,26 @@ export default function JobsTable() {
         job.company.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // Delete job by Id
+    const handleJobDelete = async (jobId: string) => {
+        try {
+            // confirm before deleting
+            if (!confirm("Are you sure you want to delete this job?")) return;
+            const response = await fetch(`${API_URL}/${jobId}`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
+            });
+
+            if (!response.ok) throw new Error('Failed to delete job');
+
+            // Remove the deleted job from the state
+            setJobs(jobs.filter(job => job.id !== jobId));
+        } catch (err) {
+            console.error("Delete error:", err);
+        }
+    };
+
     if (loading) {
         return <div className="text-center py-8">Loading jobs...</div>;
     }
@@ -140,13 +160,13 @@ export default function JobsTable() {
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-3">
-                                        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-[#7C8493] hover:text-[#4640DE]">
+                                        {/* <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-[#7C8493] hover:text-[#4640DE]">
                                             <Eye size={18} />
-                                        </button>
+                                        </button> */}
                                         <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-[#7C8493] hover:text-[#4640DE]">
                                             <Edit2 size={18} />
                                         </button>
-                                        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-[#7C8493] hover:text-red-600">
+                                        <button onClick={() => handleJobDelete(job.id as string)} className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-[#7C8493] hover:text-red-600">
                                             <Trash2 size={18} />
                                         </button>
                                     </div>

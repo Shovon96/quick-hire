@@ -11,6 +11,26 @@ export default function Sidebar() {
 
     const isActive = (path: string) => pathname === path;
 
+    // logout function to clear user session and redirect to login page
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to logout');
+            }
+            
+            // Redirect to login page after successful logout
+            window.location.href = '/login';
+        } catch (err) {
+            console.error("Logout error:", err);
+        }
+    };
+
     return (
         <div className="w-64 bg-white border-r border-[#E8E8F0] min-h-screen flex flex-col">
             {/* Logo */}
@@ -47,7 +67,7 @@ export default function Sidebar() {
                     Manage Jobs
                 </Link>
             </nav>
-            <button className="flex items-center gap-3 px-4 py-3 rounded-lg font-epilogue text-[14px] font-medium text-red-600 hover:bg-red-50 w-full transition-colors">
+            <button onClick={handleLogout} className="flex items-center cursor-pointer gap-3 px-4 py-3 rounded-lg font-epilogue text-[14px] font-medium text-red-600 hover:bg-red-50 w-full transition-colors">
                 <LogOut size={20} />
                 Logout
             </button>
