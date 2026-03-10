@@ -10,7 +10,8 @@ import Pagination from "../../components/jobs/Pagination";
 import { Job } from "../../components/home/Jobs";
 
 const ITEMS_PER_PAGE = 16;
-const API_URL = "http://localhost:5000/api/jobs";
+// const API_URL = "http://localhost:5000/api/jobs";
+const API_URL = "https://quick-hire-server-amber.vercel.app/api/jobs";
 
 export default function FindJobsPage() {
     const [jobs, setJobs] = useState<Job[]>([]);

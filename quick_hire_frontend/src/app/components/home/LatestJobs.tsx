@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { Job } from "./Jobs";
 
-const API_URL = "http://localhost:5000/api/jobs";
+// const API_URL = "http://localhost:5000/api/jobs";
+const API_URL = "https://quick-hire-server-amber.vercel.app/api/jobs";
 
 const tagColors: Record<string, string> = {
     Marketing: "bg-[#FFA500]/10 text-[#FFA500]",

@@ -19,6 +19,8 @@ export default function Navbar() {
     }, []);
     const isAdmin = user?.role === "ADMIN";
 
+    console.log('isAdmin', isAdmin)
+
     return (
         <nav className="bg-transparent sticky top-0 left-0 right-0 z-99">
             <div className="max-w-360 mx-auto px-31 py-4 flex items-center justify-between">

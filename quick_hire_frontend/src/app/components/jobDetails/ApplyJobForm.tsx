@@ -74,7 +74,7 @@ export default function ApplyJobForm({ jobId }: ApplyJobFormProps) {
 
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/applications', {
+      const response = await fetch('https://quick-hire-server-amber.vercel.app/api/applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

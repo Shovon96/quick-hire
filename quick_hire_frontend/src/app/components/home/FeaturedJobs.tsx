@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import JobCard from "./JobCard";
 import { Job } from "./Jobs";
 
-const API_URL = "http://localhost:5000/api/jobs";
+// const API_URL = "http://localhost:5000/api/jobs";
+const API_URL = "https://quick-hire-server-amber.vercel.app/api/jobs";
 
 export default function FeaturedJobs() {
     const [jobs, setJobs] = useState<Job[]>([]);

@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { Edit2, Trash2, Eye } from 'lucide-react';
 import { Job } from '../home/Jobs';
 
-const API_URL = "http://localhost:5000/api/jobs";
+// const API_URL = "http://localhost:5000/api/jobs";
+const API_URL = "https://quick-hire-server-amber.vercel.app/api/jobs";
 
 export default function JobsTable() {
     const [jobs, setJobs] = useState<Job[]>([]);

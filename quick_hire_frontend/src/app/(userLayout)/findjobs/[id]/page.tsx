@@ -12,7 +12,8 @@ import JobDetails from '../../../components/jobDetails/JobDetails';
 import CompanyCard from '../../../components/jobDetails/CompanyCard';
 import ApplyJobForm from '../../../components/jobDetails/ApplyJobForm';
 
-const API_URL = "http://localhost:5000/api/jobs";
+// const API_URL = "http://localhost:5000/api/jobs";
+const API_URL = "https://quick-hire-server-amber.vercel.app/api/jobs";
 
 export default function JobDetailsPage() {
     const params = useParams();

@@ -48,7 +48,17 @@ const userLogin = async (payload: { email: string, password: string }) => {
 }
 
 
+const getUserByEmail = async (email: string) => {
+    const user = await User.findOne({ email });
+    if (!user) {
+        throw new AppError(404, "User not found!");
+    }
+    return user;
+}
+
+
 export const UserServices = {
     createUser,
-    userLogin
+    userLogin,
+    getUserByEmail
 }

@@ -13,6 +13,8 @@ router.post(
 
 router.post( "/login", validateRequest( UserValidation.loginValidationSchema ), UserControllers.userLogin );
 
+router.get( "/me", UserControllers.getMe );
+
 router.post( "/logout", UserControllers.userLogOut );
 
 export const authRoute = router;
