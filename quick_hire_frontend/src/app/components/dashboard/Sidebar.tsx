@@ -4,9 +4,15 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import logoIcon from "../../../../public/assets/logoIcon.png";
-import { LayoutDashboard, Briefcase, LogOut } from 'lucide-react';
+import { LayoutDashboard, Briefcase, LogOut, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
-export default function Sidebar() {
+interface SidebarProps {
+    isOpen?: boolean;
+    onClose?: () => void;
+}
+
+export default function Sidebar({ isOpen = true, onClose }: SidebarProps) {
     const pathname = usePathname();
 
     const isActive = (path: string) => pathname === path;
@@ -31,8 +37,8 @@ export default function Sidebar() {
         }
     };
 
-    return (
-        <div className="w-64 bg-white border-r border-[#E8E8F0] min-h-screen flex flex-col">
+    const sidebarContent = (
+        <>
             {/* Logo */}
             <Link href="/">
                 <div className="flex items-center gap-2 px-6 py-4 border-b">
@@ -47,6 +53,7 @@ export default function Sidebar() {
             <nav className="flex-1 p-6 space-y-2">
                 <Link
                     href="/admin/dashboard"
+                    onClick={onClose}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg font-epilogue text-[14px] font-medium transition-colors ${isActive('/admin/dashboard')
                         ? 'bg-[#4640DE] text-white'
                         : 'text-[#7C8493] hover:bg-gray-50'
@@ -58,6 +65,7 @@ export default function Sidebar() {
 
                 <Link
                     href="/admin/manage-jobs"
+                    onClick={onClose}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg font-epilogue text-[14px] font-medium transition-colors ${isActive('/admin/manage-jobs')
                         ? 'bg-[#4640DE] text-white'
                         : 'text-[#7C8493] hover:bg-gray-50'
@@ -71,6 +79,30 @@ export default function Sidebar() {
                 <LogOut size={20} />
                 Logout
             </button>
-        </div>
+        </>
+    );
+
+    return (
+        <>
+            {/* Desktop Sidebar */}
+            <div className="hidden lg:flex w-64 bg-white border-r border-[#E8E8F0] min-h-screen flex-col">
+                {sidebarContent}
+            </div>
+
+            {/* Mobile Drawer */}
+            {isOpen && (
+                <>
+                    {/* Overlay */}
+                    <div
+                        className="fixed inset-0 bg-opacity-50 z-40 lg:hidden"
+                        onClick={onClose}
+                    />
+                    {/* Drawer */}
+                    <div className="fixed left-0 top-0 h-full w-64 bg-white z-50 lg:hidden flex flex-col shadow-lg">
+                        {sidebarContent}
+                    </div>
+                </>
+            )}
+        </>
     );
 }

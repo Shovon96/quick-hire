@@ -19,7 +19,7 @@ export default function JobStatistics() {
     return (
         <div className="bg-white rounded-lg border border-[#E8E8F0] p-8">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="lg:flex items-center justify-between mb-6">
                 <div>
                     <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[24px] font-bold text-[#25324B] mb-1">
                         Job statistic
