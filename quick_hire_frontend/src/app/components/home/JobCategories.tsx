@@ -24,44 +24,49 @@ const categories: CategoryCard[] = [
 export default function JobCategories() {
   return (
     <section className="bg-white pb-20">
-      <div className="max-w-360 mx-auto px-31">
+      <div className="max-w-360 mx-auto px-6 md:px-12 lg:px-31">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-5xl font-bold text-[#25324B]">
+        <div className="md:flex items-center justify-between mb-12">
+          <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-3xl md:text-5xl font-bold text-[#25324B]">
             Explore by <span className="text-[#26A4FF]">category</span>
           </h2>
-          <Link href="#" className="font-epilogue text-[#4640DE] font-semibold text-[16px] flex items-center gap-3 hover:gap-4 transition-all">
+          <Link href="#" className="hidden font-epilogue text-[#4640DE] font-semibold text-[16px] md:flex items-center gap-3 hover:gap-4 transition-all">
             Show all jobs <span>→</span>
           </Link>
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {categories.map((category) => (
             <div
               key={category.id}
-              className="p-8 rounded-sm border border-[#D6DDEB] bg-white transition-all duration-300 cursor-pointer group hover:bg-[#4640DE] hover:border-[#4640DE] hover:shadow-lg"
+              className="md:p-8 p-4 flex items-center gap-6 md:block md:gap-0 rounded-sm border border-[#D6DDEB] bg-white transition-all duration-300 cursor-pointer group hover:bg-[#4640DE] hover:border-[#4640DE] hover:shadow-lg"
             >
               {/* Icon */}
-              <div className="text-[#4640DE] mb-6 group-hover:text-white transition-colors duration-300">
+              <div className="text-[#4640DE] md:mb-6 group-hover:text-white transition-colors duration-300">
                 {category.icon}
               </div>
 
-              {/* Title */}
-              <h3 style={{ fontFamily: 'var(--font-clash)' }} className="text-[20px] font-semibold mb-3 text-[#25324B] group-hover:text-white transition-colors duration-300">
-                {category.title}
-              </h3>
+              <div>
+                {/* Title */}
+                <h3 style={{ fontFamily: 'var(--font-clash)' }} className="text-[20px] font-semibold mb-3 text-[#25324B] group-hover:text-white transition-colors duration-300">
+                  {category.title}
+                </h3>
 
-              {/* Jobs Count */}
-              <p className="font-epilogue text-[14px] flex items-center gap-2 text-[#7C8493] group-hover:text-white transition-colors duration-300">
-                {category.jobsCount} jobs available
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </p>
+                {/* Jobs Count */}
+                <p className="font-epilogue text-[14px] flex items-center gap-2 text-[#7C8493] group-hover:text-white transition-colors duration-300">
+                  {category.jobsCount} jobs available
+                  <span className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </p>
+              </div>
             </div>
           ))}
         </div>
+        <Link href="#" className="md:hidden mt-4 justify-center font-epilogue text-[#4640DE] font-semibold text-[16px] flex items-center gap-3 hover:gap-4 transition-all">
+          Show all jobs <span>→</span>
+        </Link>
       </div>
     </section>
   );

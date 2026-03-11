@@ -14,7 +14,7 @@ export default function Sidebar() {
     // logout function to clear user session and redirect to login page
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/auth/logout', {
+            const response = await fetch('https://quick-hire-server-amber.vercel.app/api/auth/logout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include'

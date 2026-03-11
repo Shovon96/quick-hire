@@ -5,7 +5,7 @@ import companyDashboard from '../../../../public/assets/Dashboard-Company.png';
 
 export default function CTABanner() {
     return (
-            <section className="max-w-360 mx-auto px-31 bg-white pb-10 md:pb-16 lg:pb-20">
+            <section className="max-w-360 mx-auto md:px-6 lg:px-31 bg-white pb-10 md:pb-16 lg:pb-20">
 
                 {/* Banner */}
                 <div
@@ -15,24 +15,22 @@ export default function CTABanner() {
                             'polygon(14% 0, 100% 0, 100% 82%, 86% 100%, 0 100%, 0 20%)',
                     }}
                 >
-                    <div className="grid grid-cols-2 items-center px-20 py-22.5">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 items-center px-6 md:px-12 lg:px-20 py-22.5">
 
                         {/* Left Content */}
-                        <div className="max-w-105">
+                        <div className="max-w-105 text-center md:text-start">
                             <h2
                                 style={{ fontFamily: 'var(--font-clash)' }}
-                                className="text-[56px] leading-16 font-semibold mb-6"
+                                className="text-[34px] md:text-[56px] leading-12 lg:leading-16 font-semibold mb-3 md:mb-6"
                             >
-                                Start posting
-                                <br />
-                                jobs today
+                                Start posting jobs today
                             </h2>
 
-                            <p className="text-[18px] text-white/90 mb-8">
+                            <p className="text-[18px] text-white/90 mb-3 md:mb-8">
                                 Start posting jobs for only $10.
                             </p>
 
-                            <button className="bg-white text-[#4640DE] cursor-pointer font-bold px-8 py-4 hover:bg-gray-100 transition">
+                            <button className="bg-white text-[#4640DE] cursor-pointer font-bold px-8 py-4 hover:bg-gray-100 transition w-full md:w-auto">
                                 Sign Up For Free
                             </button>
                         </div>

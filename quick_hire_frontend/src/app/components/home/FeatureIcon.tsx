@@ -17,7 +17,7 @@ export default function FeatureIcon() {
                 </p>
 
                 {/* Logos Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-4 items-center justify-start md:justify-items-center">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 lg:gap-4 items-center justify-between md:justify-items-center">
 
                     <Image
                         width={153.54}

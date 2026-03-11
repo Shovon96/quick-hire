@@ -67,7 +67,7 @@ export default function LatestJobs() {
     if (loading) {
         return (
             <section className="py-10 md:py-16 bg-gray-50">
-                <div className="max-w-360 mx-auto px-31">
+                <div className="max-w-360 mx-auto px-6 md:px-12 lg:px-31">
                     <p className="text-center text-[#7C8493]">Loading latest jobs...</p>
                 </div>
             </section>
@@ -76,27 +76,27 @@ export default function LatestJobs() {
 
     return (
         <section className="py-10 md:py-16 bg-gray-50">
-            <div className="max-w-360 mx-auto px-31">
+            <div className="max-w-360 mx-auto px-6 md:px-12 lg:px-31">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-12">
-                    <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-[48px] font-bold text-[#25324B]">
-                        Latest <span className="text-[#26A4FF]">jobs open</span>
+                    <h2 style={{ fontFamily: 'var(--font-clash)' }} className="text-3xl md:text-[48px] font-bold text-[#25324B]">
+                        Latest <span className="text-[#26A4FF]"> jobs open</span>
                     </h2>
 
-                    <a href="/findjobs" className="font-epilogue text-[#4640DE] font-semibold text-[16px] flex items-center gap-2 hover:gap-3 transition-all">
+                    <a href="/findjobs" className="hidden font-epilogue text-[#4640DE] font-semibold text-[16px] md:flex items-center gap-2 hover:gap-3 transition-all">
                         Show all jobs <span>→</span>
                     </a>
                 </div>
 
                 {/* Jobs List Grid */}
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {jobs.map((job) => (
                         <div
                             key={job.id}
-                            className="border border-[#E8E8F0] rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 bg-white flex items-start gap-6"
+                            className="border border-[#E8E8F0] rounded-sm p-6 hover:shadow-lg transition-shadow duration-300 bg-white md:flex items-start gap-6"
                         >
                             {/* Logo */}
-                            <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center shrink-0 overflow-hidden">
+                            <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center shrink-0 overflow-hidden mb-3 md:mb-0">
                                 <Image
                                     src={job.company.logo}
                                     alt={job.company.name}
@@ -136,6 +136,9 @@ export default function LatestJobs() {
                         </div>
                     ))}
                 </div>
+                <a href="/findjobs" className="md:hidden mt-3 justify-self-center font-epilogue text-[#4640DE] font-semibold text-[16px] flex items-center gap-2 hover:gap-3 transition-all">
+                    Show all jobs <span>→</span>
+                </a>
             </div>
         </section>
     );

@@ -30,7 +30,7 @@ export default function Navbar() {
     const isAdmin = user?.role === "ADMIN";
 
     return (
-        <nav className="bg-transparent sticky top-0 left-0 right-0 z-50 backdrop-blur-md">
+        <nav className="bg-transparent sticky top-0 left-0 right-0 z-50 backdrop-blur-md md:backdrop-blur-none">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
