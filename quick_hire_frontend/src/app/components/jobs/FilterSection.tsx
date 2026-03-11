@@ -19,7 +19,7 @@ export default function FilterSection({
   const employmentTypes = ['All', 'INTERNSHIP', 'FULL_TIME', 'PART_TIME', 'CONTRACT'];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-4 lg:mb-12">
       {/* Category Filter */}
       <div>
         <label className="font-epilogue text-[#25324B] font-semibold text-[14px] block mb-3">

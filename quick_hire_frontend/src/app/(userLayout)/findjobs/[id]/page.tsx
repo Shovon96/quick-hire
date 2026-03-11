@@ -83,11 +83,11 @@ export default function JobDetailsPage() {
     if (loading) {
         return (
             <div>
-                <div className="bg-white border border-b">
+                <div className="bg-white border-b">
                     <Navbar />
                 </div>
                 <div className="min-h-screen bg-white flex items-center justify-center">
-                    <p className="text-[#7C8493] text-[16px]">Loading job details...</p>
+                    <p className="text-[#7C8493] text-base">Loading job details...</p>
                 </div>
             </div>
         );
@@ -96,13 +96,13 @@ export default function JobDetailsPage() {
     if (error || !job) {
         return (
             <div>
-                <div className="bg-white border border-b">
+                <div className="bg-white border-b">
                     <Navbar />
                 </div>
                 <div className="min-h-screen bg-white">
-                    <div className="max-w-360 mx-auto px-31 py-16">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
                         <div className="text-center">
-                            <p className="text-red-600 text-[16px] mb-4">{error || 'Job not found'}</p>
+                            <p className="text-red-600 text-base mb-4">{error || 'Job not found'}</p>
                             <Link href="/findjobs" className="text-[#4640DE] font-semibold hover:underline">
                                 ← Back to jobs
                             </Link>
@@ -115,20 +115,20 @@ export default function JobDetailsPage() {
 
     return (
         <div>
-            <div className="bg-white border border-b">
+            <div className="bg-white border-b">
                 <Navbar />
             </div>
             <div className="bg-white min-h-screen">
-                <div className="max-w-360 mx-auto px-31 py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
                     {/* Back Button */}
-                    <Link href="/findjobs" className="inline-flex items-center gap-2 text-[#4640DE] font-epilogue font-semibold text-[14px] mb-8 hover:gap-3 transition-all">
+                    <Link href="/findjobs" className="inline-flex items-center gap-2 text-[#4640DE] font-epilogue font-semibold text-sm sm:text-base mb-6 sm:mb-8 hover:gap-3 transition-all">
                         ← Back to jobs
                     </Link>
 
                     {/* Main Content Grid */}
-                    <div className="grid grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                         {/* Left Column - Job Details */}
-                        <div className="col-span-2">
+                        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
                             <JobHeader job={job} onApplyClick={handleApplyClick} />
                             <JobOverview job={job} />
                             <JobDescription job={job} />
@@ -136,13 +136,15 @@ export default function JobDetailsPage() {
                         </div>
 
                         {/* Right Column - Company Info */}
-                        <div className="col-span-1">
-                            <CompanyCard job={job} />
+                        <div className="lg:col-span-1">
+                            <div className="sticky top-20">
+                                <CompanyCard job={job} />
+                            </div>
                         </div>
                     </div>
 
                     {/* Apply Form */}
-                    <div id="applicationForm" className="mt-12">
+                    <div id="applicationForm" className="mt-8 sm:mt-12">
                         <ApplyJobForm jobId={job.id} />
                     </div>
                 </div>

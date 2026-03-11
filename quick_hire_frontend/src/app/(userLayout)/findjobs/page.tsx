@@ -108,7 +108,7 @@ export default function FindJobsPage() {
             </div>
 
             <div className="bg-white min-h-screen">
-                <div className="max-w-360 mx-auto px-31 py-6 md:py-12 lg:py-16">
+                <div className="max-w-360 mx-auto px-6 md:px-12 lg:px-31 py-6 md:py-12 lg:py-16">
                     <JobsHeader />
 
                     {error && (
@@ -127,7 +127,7 @@ export default function FindJobsPage() {
                         </div>
                     ) : (
                         <>
-                            <div className='flex items-center justify-between gap-6'>
+                            <div className='lg:flex items-center justify-between gap-6'>
                                 <SearchBar value={searchQuery} onChange={(value) => {
                                     setSearchQuery(value);
                                     handleFilterChange();
